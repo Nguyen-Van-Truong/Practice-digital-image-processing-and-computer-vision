@@ -35,8 +35,12 @@ def color_filter2(image, lower_bound1, upper_bound1, lower_bound2, upper_bound2)
     # Combine the masks
     mask = cv2.bitwise_or(mask1, mask2)
 
+
     # Apply the mask to the original image
     filtered_image = cv2.bitwise_and(image, image, mask=mask)
+
+    mask = cv2.resize(mask, (600, 600))
+    cv2.imshow('Mask Image', mask)
 
     return filtered_image
 
@@ -72,16 +76,16 @@ def main():
 
 
     # Create resizable windows
-    cv2.namedWindow('Original Image', cv2.WINDOW_NORMAL)
-    cv2.namedWindow('Filtered Image', cv2.WINDOW_NORMAL)
+    # cv2.namedWindow('Original Image', cv2.WINDOW_NORMAL)
+    # cv2.namedWindow('Filtered Image', cv2.WINDOW_NORMAL)
 
     # Display the original and filtered images
     cv2.imshow('Original Image', image)
     cv2.imshow('Filtered Image', filtered_image)
 
     # Resize the windows
-    cv2.resizeWindow('Original Image', 600, 600)
-    cv2.resizeWindow('Filtered Image', 600, 600)
+    # cv2.resizeWindow('Original Image', 600, 600)
+    # cv2.resizeWindow('Filtered Image', 600, 600)
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
